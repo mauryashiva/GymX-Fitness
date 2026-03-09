@@ -13,7 +13,7 @@ const Footer = () => {
             {/* ✅ Using a filter to brighten the logo on dark background, can be removed if your logo is already bright */}
             <img
               src={Logo}
-              alt="Golds Gym Logo"
+              alt="GymX Logo"
               className="w-40 mb-4 brightness-200"
             />
             {/* ✅ Increased text brightness for readability */}
@@ -90,26 +90,10 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Credits and Copyright */}
+        {/* Bottom Bar: Copyright */}
         <div className="mt-16 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p className="mb-2">
-            Made with{" "}
-            <span role="img" aria-label="heart">
-              ❤️
-            </span>{" "}
-            by {/* ✅ Styled the link to match the brand color */}
-            <a
-              href="https://www.jsmastery.pro/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-[#FF2625] hover:underline"
-            >
-              JavaScript Mastery
-            </a>
-          </p>
-          {/* ✅ Updated text to match your screenshot and increased brightness */}
           <p className="text-sm">
-            © {new Date().getFullYear()} Golds Gym. All rights reserved.
+            © {new Date().getFullYear()} GymX. All rights reserved.
           </p>
         </div>
       </div>

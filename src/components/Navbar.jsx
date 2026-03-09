@@ -18,6 +18,16 @@ const Navbar = () => {
         {/* Navigation Links */}
         <div className="flex items-center gap-8 text-base font-medium">
           <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? "no-underline text-[#3A1212] border-b-2 border-red-500 pb-1 font-semibold transition-all duration-300"
+                : "no-underline text-[#3A1212] pb-1 font-medium transition-all duration-300 hover:text-red-500 hover:border-b-2 hover:border-red-500"
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
             to="/home-workouts"
             className={({ isActive }) =>
               isActive
