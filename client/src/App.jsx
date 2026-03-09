@@ -10,10 +10,6 @@ import Home from "./pages/Home";
 import ExerciseDetail from "./pages/ExerciseDetails";
 import Footer from "./components/Footer";
 import HomeWorkouts from "./pages/HomeWorkouts.jsx";
-import HowItWorks from "./pages/HowItWorks.jsx";
-import Features from "./pages/Features.jsx";
-import Login from "./pages/Login.jsx";
-import Signup from "./pages/Signup.jsx";
 import TodaysWorkout from "./pages/TodaysWorkout.jsx";
 
 const App = () => {
@@ -27,10 +23,6 @@ const App = () => {
           <Route path="/exercise/:id" element={<ExerciseDetail />} />
           <Route path="/home-workouts" element={<HomeWorkouts />} />
           <Route path="/todays-workout" element={<TodaysWorkout />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
         </Routes>
       </main>
 
