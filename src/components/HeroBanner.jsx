@@ -39,7 +39,7 @@ const HeroBanner = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center text-center p-6 overflow-hidden">
+    <section className="relative w-full h-full flex items-center justify-center text-center p-6 overflow-hidden min-h-[500px]">
       {/* Image Slider with improved "Ken Burns" animation */}
       <AnimatePresence>
         <motion.img

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 // ✅ 1. Import new hooks for parallax effect
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  useSpring,
+} from "framer-motion";
 import { ArrowForward } from "@mui/icons-material";
 
 // ✅ 1. Using your exact local image imports as provided.
@@ -43,8 +49,14 @@ const HeroBanner = () => {
   const y = useMotionValue(0);
 
   const springConfig = { damping: 20, stiffness: 100 };
-  const rotateX = useSpring(useTransform(y, [-400, 400], [10, -10]), springConfig);
-  const rotateY = useSpring(useTransform(x, [-400, 400], [-10, 10]), springConfig);
+  const rotateX = useSpring(
+    useTransform(y, [-400, 400], [10, -10]),
+    springConfig,
+  );
+  const rotateY = useSpring(
+    useTransform(x, [-400, 400], [-10, 10]),
+    springConfig,
+  );
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -68,12 +80,16 @@ const HeroBanner = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   return (
-    <section 
-      className="relative w-full min-h-screen flex items-center justify-center text-center p-6 overflow-hidden"
+    <section
+      className="relative w-full h-full flex items-center justify-center text-center p-6 overflow-hidden min-h-[500px]"
       style={{ perspective: "1000px" }}
     >
       {/* Image Slider with "Ken Burns" animation */}
@@ -110,13 +126,22 @@ const HeroBanner = () => {
         animate="visible"
         className="relative z-10 flex flex-col items-center"
       >
-        <motion.p variants={itemVariants} className="font-semibold text-white text-lg md:text-xl mb-2 drop-shadow-xl">
+        <motion.p
+          variants={itemVariants}
+          className="font-semibold text-white text-lg md:text-xl mb-2 drop-shadow-xl"
+        >
           Your Fitness Journey Starts Here
         </motion.p>
-        <motion.h1 variants={itemVariants} className="my-4 font-extrabold text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl">
+        <motion.h1
+          variants={itemVariants}
+          className="my-4 font-extrabold text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl"
+        >
           Train Hard <br /> Stay Consistent
         </motion.h1>
-        <motion.p variants={itemVariants} className="mb-10 text-lg text-white max-w-2xl drop-shadow-xl">
+        <motion.p
+          variants={itemVariants}
+          className="mb-10 text-lg text-white max-w-2xl drop-shadow-xl"
+        >
           Build the best version of you. Unlock your potential with personalized
           workouts and expert guidance.
         </motion.p>
@@ -125,8 +150,12 @@ const HeroBanner = () => {
           variants={itemVariants}
           // ✅ 6. Added a subtle pulse animation to the button
           animate={{
-            boxShadow: ["0px 0px 20px rgba(59, 130, 246, 0.4)", "0px 0px 30px rgba(59, 130, 246, 0.6)", "0px 0px 20px rgba(59, 130, 246, 0.4)"],
-            transition: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+            boxShadow: [
+              "0px 0px 20px rgba(59, 130, 246, 0.4)",
+              "0px 0px 30px rgba(59, 130, 246, 0.6)",
+              "0px 0px 20px rgba(59, 130, 246, 0.4)",
+            ],
+            transition: { duration: 2, repeat: Infinity, ease: "easeInOut" },
           }}
           whileHover={{
             scale: 1.05,
@@ -147,7 +176,7 @@ const HeroBanner = () => {
             key={index}
             onClick={() => setCurrentImageIndex(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentImageIndex === index ? 'bg-white scale-125' : 'bg-white/50'
+              currentImageIndex === index ? "bg-white scale-125" : "bg-white/50"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

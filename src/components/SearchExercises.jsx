@@ -60,7 +60,7 @@ const SearchExercises = ({ onSearch, bodyPart, setBodyPart }) => {
     } else {
       // NOTE: Replaced alert() with a more user-friendly custom modal or toast in a real app.
       alert(
-        "Please select a valid exercise, body part, or equipment from the suggestions."
+        "Please select a valid exercise, body part, or equipment from the suggestions.",
       );
     }
   };
@@ -68,9 +68,9 @@ const SearchExercises = ({ onSearch, bodyPart, setBodyPart }) => {
 
   return (
     // ✅ Added a background gradient and padding for a better section feel
-    <section className="flex flex-col items-center mt-12 p-5 text-center bg-gradient-to-b from-black via-gray-900 to-black text-white py-20">
+    <section className="flex flex-col items-center justify-center p-5 text-center bg-gradient-to-b from-black via-gray-900 to-black text-white w-full h-full">
       {/* ✅ Enhanced typography for a more impactful heading */}
-      <h2 className="text-4xl lg:text-6xl font-extrabold mb-12 tracking-tighter">
+      <h2 className="text-3xl lg:text-5xl font-extrabold mb-8 tracking-tighter">
         Find Your Perfect Workout, <br />
         {/* ✅ Made the gradient text more vibrant */}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-700">
