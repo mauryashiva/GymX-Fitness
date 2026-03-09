@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowForward } from "@mui/icons-material";
 
-// ✅ 1. Using your exact local image imports as provided.
 import myHeroImage from "../assets/images/my-gym-background.jpg";
 import image1 from "../assets/images/my-gym-background1.jpg";
 import image2 from "../assets/images/my-gym-background2.jpg";
@@ -13,7 +12,6 @@ import image6 from "../assets/images/my-gym-background6.jpg";
 import image7 from "../assets/images/my-gym-background7.jpg";
 import image8 from "../assets/images/my-gym-background8.jpg";
 
-// ✅ 2. Using your image array.
 const allImages = [
   myHeroImage,
   image1,
@@ -29,66 +27,61 @@ const allImages = [
 const HeroBanner = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // This effect will cycle through the images every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % allImages.length);
-    }, 5000); // Change image every 5 seconds
+    }, 5000);
 
-    return () => clearInterval(timer); // Cleanup on component unmount
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative w-full h-full flex items-center justify-center text-center p-6 overflow-hidden min-h-[500px]">
-      {/* Image Slider with improved "Ken Burns" animation */}
+    <section className="relative w-full flex items-center justify-center text-center px-6 py-20 overflow-hidden min-h-[420px]">
       <AnimatePresence>
         <motion.img
           key={currentImageIndex}
           src={allImages[currentImageIndex]}
-          // ✅ 3. Applied the smoother "Ken Burns" animation effect
-          initial={{ opacity: 0, scale: 1.2 }} // Start slightly zoomed in and faded out
+          initial={{ opacity: 0, scale: 1.15 }}
           animate={{
             opacity: 1,
-            scale: 1, // Animate to normal scale
-            transition: { duration: 2, ease: [0.43, 0.13, 0.23, 0.96] }, // Slower, smoother fade-in
+            scale: 1,
+            transition: { duration: 2 },
           }}
           exit={{
             opacity: 0,
-            scale: 1.1, // Zoom out slightly on exit
-            transition: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] }, // Smooth fade-out
+            scale: 1.08,
+            transition: { duration: 1.5 },
           }}
           className="absolute inset-0 w-full h-full object-cover"
         />
       </AnimatePresence>
 
-      {/* Overlay remains the same */}
-      <div className="absolute inset-0 bg-black/70"></div>
+      <div className="absolute inset-0 bg-black/65"></div>
 
-      {/* All your text and button content remains the same */}
       <motion.div
-        className="relative z-10 flex flex-col items-center"
-        initial={{ opacity: 0, y: 30 }}
+        className="relative z-10 flex flex-col items-center max-w-3xl"
+        initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8 }}
       >
-        <p className="font-semibold text-white text-lg md:text-xl mb-2 drop-shadow-xl">
+        <p className="font-medium text-white text-base md:text-lg mb-3">
           Your Fitness Journey Starts Here
         </p>
-        <h1 className="my-4 font-extrabold text-5xl md:text-7xl lg:text-8xl text-white leading-tight drop-shadow-2xl">
+
+        <h1 className="font-extrabold text-3xl md:text-5xl lg:text-6xl text-white leading-tight mb-4">
           Train Hard <br /> Stay Consistent
         </h1>
-        <p className="mb-10 text-lg text-white max-w-2xl drop-shadow-xl">
-          Build the best version of you. Unlock your potential with personalized
-          workouts and expert guidance.
+
+        <p className="text-sm md:text-base text-gray-200 mb-8">
+          Build the best version of yourself. Unlock your potential with
+          personalized workouts and expert guidance.
         </p>
+
         <motion.a
           href="#exercises"
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0px 0px 30px rgba(59, 130, 246, 0.6)",
-          }}
+          whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-bold text-xl rounded-full shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+          className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold text-base rounded-full shadow-lg"
         >
           Explore Workouts
           <ArrowForward />

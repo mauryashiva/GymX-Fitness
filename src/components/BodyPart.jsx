@@ -8,45 +8,47 @@ const BodyPart = ({ item, bodyPart, setBodyPart }) => {
   return (
     <motion.div
       className={`
-        group w-52 h-56 flex flex-col rounded-xl cursor-pointer bg-white 
-        shadow-lg border-b-8 transform transition-all duration-300
-        hover:scale-105 hover:-translate-y-2
+        group w-40 h-44 flex flex-col items-center justify-center
+        rounded-xl cursor-pointer bg-white
+        shadow-md border-b-4 transition-all duration-300
+        hover:scale-105 hover:-translate-y-1
         ${
-          isSelected ? "border-red-500" : "border-gray-200 hover:border-red-200"
+          isSelected
+            ? "border-red-500 shadow-red-200"
+            : "border-gray-200 hover:border-red-300"
         }
       `}
+      whileTap={{ scale: 0.97 }}
       onClick={() => {
         setBodyPart(item);
 
-        // ✅ The updated dynamic scroll logic
-        // This finds the results section and scrolls to it.
         const exercisesSection = document.getElementById("exercises");
         if (exercisesSection) {
           exercisesSection.scrollIntoView({ behavior: "smooth" });
         }
       }}
-      whileTap={{ scale: 0.98 }}
     >
-      <div className="flex flex-col items-center justify-center h-full gap-5 p-4">
-        <img
-          src={Icon}
-          alt={`${item} icon`}
-          className="w-12 h-12 transition-transform duration-300 group-hover:scale-110"
-        />
-        <span
-          className={`
-            text-2xl font-semibold capitalize tracking-wide
-            transition-colors duration-300
-            ${
-              isSelected
-                ? "text-red-500"
-                : "text-zinc-800 group-hover:text-red-500"
-            }
-          `}
-        >
-          {item}
-        </span>
-      </div>
+      {/* Icon */}
+      <img
+        src={Icon}
+        alt={`${item} icon`}
+        className="w-10 h-10 mb-3 transition-transform duration-300 group-hover:scale-110"
+      />
+
+      {/* Label */}
+      <span
+        className={`
+          text-lg font-semibold capitalize tracking-wide
+          transition-colors duration-300
+          ${
+            isSelected
+              ? "text-red-500"
+              : "text-gray-800 group-hover:text-red-500"
+          }
+        `}
+      >
+        {item}
+      </span>
     </motion.div>
   );
 };
