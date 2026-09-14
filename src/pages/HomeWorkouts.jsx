@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 // Assuming you have a data file for the weekly plan
 import { weeklyPlan } from "../data/weeklyPlan";
 // Using lucide-react for clean, modern icons. Make sure to install it: npm install lucide-react
@@ -11,6 +12,12 @@ import {
   Repeat,
   CalendarCheck,
 } from "lucide-react";
+
+const pageVariants = {
+  initial: { opacity: 0, x: -20 },
+  animate: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+  exit: { opacity: 0, x: 20, transition: { duration: 0.3 } },
+};
 
 // An object to map workout focus to a specific icon for visual flair
 const focusIcons = {
@@ -34,7 +41,13 @@ const HomeWorkouts = () => {
 
   return (
     // ✅ Added a subtle background gradient for more visual depth
-    <div className="pt-24 min-h-screen px-6 lg:px-12 pb-12 bg-gradient-to-b from-gray-900 to-black text-white">
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      className="pt-24 min-h-screen px-6 lg:px-12 pb-12 bg-gradient-to-b from-gray-900 to-black text-white"
+    >
       <div className="max-w-7xl mx-auto">
         {/* ✅ Centered the header text for a more impactful title section */}
         <div className="text-center mb-12">
@@ -135,7 +148,7 @@ const HomeWorkouts = () => {
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 };
 
