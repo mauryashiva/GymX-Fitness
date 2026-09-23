@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+
 import Icon from "../assets/icons/gym.png";
 
 const BodyPart = ({ item, bodyPart, setBodyPart }) => {
