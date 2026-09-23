@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 
+
 import allExercisesData from "../data/exercises.json";
 import { fetchData, youtubeOptions } from "../utils/fetchData";
 
@@ -10,8 +11,13 @@ import ExerciseVideos from "../components/ExerciseVideos.jsx";
 import SimilarExercises from "../components/SimilarExercises.jsx";
 import Loader from "../components/Loader.jsx";
 
+const pageVariants = {
+  initial: { opacity: 0, x: 20 },
+  in: { opacity: 1, x: 0 },
+  out: { opacity: 0, x: -20 },
+};
+
 const ExerciseDetails = () => {
-  // --- Saara State aur Logic jaisa tha waisa hi hai ---
   const [exerciseDetail, setExerciseDetail] = useState(null);
   const [exerciseVideos, setExerciseVideos] = useState([]);
   const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
@@ -31,7 +37,7 @@ const ExerciseDetails = () => {
           "https://youtube-search-and-download.p.rapidapi.com";
         const videosData = await fetchData(
           `${youtubeSearchUrl}/search?query=${currentExercise.name} exercise`,
-          youtubeOptions
+          youtubeOptions,
         );
         if (videosData.contents) {
           setExerciseVideos(videosData.contents);
@@ -48,7 +54,7 @@ const ExerciseDetails = () => {
           (ex) =>
             ex.targetMuscles &&
             ex.targetMuscles.includes(primaryMuscle) &&
-            ex.exerciseId !== id
+            ex.exerciseId !== id,
         );
         setTargetMuscleExercises(similarTarget);
       }
@@ -59,7 +65,7 @@ const ExerciseDetails = () => {
           (ex) =>
             ex.equipments &&
             ex.equipments.includes(primaryEquipment) &&
-            ex.exerciseId !== id
+            ex.exerciseId !== id,
         );
         setEquipmentExercises(similarEquipment);
       }
@@ -69,50 +75,37 @@ const ExerciseDetails = () => {
   if (!exerciseDetail) {
     return <Loader />;
   }
-  // --- Logic mein koi badlav nahi ---
 
   return (
-    // ✅ New UI: A clean, high-contrast light theme for better readability.
     <motion.main
-      className="bg-gray-50 text-gray-900 min-h-screen px-4 sm:px-6 lg:px-8"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="bg-background text-text-primary min-h-screen px-0 sm:px-6 lg:px-8 w-full overflow-hidden"
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={{ duration: 0.3 }}
     >
-      <div className="max-w-7xl mx-auto py-12 md:py-20">
-        {/*
-          NOTE: For the best look, the <Detail /> component should be updated
-          to use this new light theme with teal accents.
-        */}
-        <section className="mb-20">
+      <div className="w-full mx-auto py-6 md:py-12">
+        <section className="mb-16 md:mb-24">
           <Detail exerciseDetail={exerciseDetail} />
         </section>
 
-        {/* ✅ Stylized Divider: Updated for the light theme. */}
-        <div className="w-full flex justify-center my-20">
-          <div className="w-1/3 h-px bg-gray-200"></div>
+        <div className="w-full flex justify-center my-12 md:my-20 px-6">
+          <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
         </div>
 
-        {/*
-          NOTE: The <ExerciseVideos /> component should be updated to match,
-          with headings and links using the new teal accent color (e.g., text-teal-500).
-        */}
-        <section className="mb-20">
+        <section className="mb-16 md:mb-24 px-4 md:px-0">
           <ExerciseVideos
             exerciseVideos={exerciseVideos}
             name={exerciseDetail.name}
           />
         </section>
 
-        <div className="w-full flex justify-center my-20">
-          <div className="w-1/3 h-px bg-gray-200"></div>
+        <div className="w-full flex justify-center my-12 md:my-20 px-6">
+          <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent"></div>
         </div>
 
-        {/*
-          NOTE: The <SimilarExercises /> component and its cards should be
-          redesigned for a light background to complete the look.
-        */}
-        <section>
+        <section className="px-4 md:px-0">
           <SimilarExercises
             targetMuscleExercises={targetMuscleExercises}
             equipmentExercises={equipmentExercises}
