@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+/* eslint-disable no-unused-vars */
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowForward } from "@mui/icons-material";
 

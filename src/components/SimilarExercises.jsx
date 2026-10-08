@@ -1,4 +1,5 @@
 import React from "react";
+/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import Loader from "./Loader.jsx";
 import ExerciseCard from "./ExerciseCard.jsx";

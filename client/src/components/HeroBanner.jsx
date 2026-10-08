@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 // ✅ 1. Import new hooks for parallax effect
+/* eslint-disable no-unused-vars */
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { ArrowForward } from "@mui/icons-material";
 
