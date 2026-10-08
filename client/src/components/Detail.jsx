@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // ✅ Import 'motion' and 'AnimatePresence' for animations
+/* eslint-disable no-unused-vars */
 import { motion, AnimatePresence } from "framer-motion";
 
 import BodyPartImage from "../assets/icons/body-part.png";

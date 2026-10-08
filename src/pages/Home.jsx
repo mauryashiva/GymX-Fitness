@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import Fuse from "fuse.js";
 
@@ -17,9 +19,22 @@ const sectionVariants = {
 };
 
 const Home = () => {
-  // ✅ State ab local data se initialize ho raha hai
   const [exercises, setExercises] = useState(allExercisesData);
   const [bodyPart, setBodyPart] = useState("all");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Intercept the `?search=true` query parameter to open the mobile search
+  useEffect(() => {
+    if (searchParams.get("search") === "true") {
+      // Remove the parameter so it doesn't reopen on refresh
+      setSearchParams({});
+
+      // Add a small delay to ensure the component is fully mounted and listeners are active
+      setTimeout(() => {
+        window.dispatchEvent(new Event("open-search"));
+      }, 100);
+    }
+  }, [searchParams, setSearchParams]);
 
   // Fuse.js setup for smart search
   const fuse = new Fuse(allExercisesData, {
@@ -27,7 +42,6 @@ const Home = () => {
     threshold: 0.4,
   });
 
-  // ✅ Filtering aur searching ka saara logic ab yahan hai
   const handleSearch = (searchTerm) => {
     if (searchTerm === "") {
       setExercises(allExercisesData);
@@ -65,7 +79,6 @@ const Home = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <SearchExercises
-          // ✅ Naye functions ko as a prop pass karein
           onSearch={handleSearch}
           bodyPart={bodyPart}
           setBodyPart={handleBodyPartChange}
@@ -79,7 +92,6 @@ const Home = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <Exercises
-          // ✅ Sirf zaroori props pass karein
           exercises={exercises}
           bodyPart={bodyPart}
         />

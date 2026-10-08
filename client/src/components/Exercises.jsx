@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
 import { motion, AnimatePresence } from "framer-motion";
 import allExercisesData from "../data/exercises.json";
 import ExerciseCard from "./ExerciseCard.jsx";

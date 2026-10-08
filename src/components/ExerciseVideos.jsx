@@ -1,4 +1,5 @@
 import React, { useState } from "react"; // 1. Import useState
+/* eslint-disable no-unused-vars */
 import { motion, AnimatePresence } from "framer-motion";
 import { PlayCircleOutline, Close } from "@mui/icons-material";
 
